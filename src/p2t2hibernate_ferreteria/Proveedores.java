@@ -6,7 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
+/**
+ *
+ * @author Daniel Mayorga y Bárbara Sánchez
+ */
 @Entity
 @Table(name= "proveedores")
 public class Proveedores implements Serializable{

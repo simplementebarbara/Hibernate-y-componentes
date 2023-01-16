@@ -19,11 +19,11 @@ public class P2T2Hibernate_ferreteria {
             System.out.println("Creamos objetos");
             //Creamos objetos
             //Clientes c = new Clientes(207, "Juan Benitez", "C/ Corralito", "670908070");
-            Proveedores p = new Proveedores(204, "Juan Benitez", "C/ Corralito", "670908070");
-           
+            //Proveedores p = new Proveedores(204, "Juan Benitez", "C/ Corralito", "670908070");
+            Categorias cat = new Categorias (4, "Herramientas de fontaneria", "Mangueras, tubos..");
             //Transacciones. Insertamos objeto en la tabla
             session.beginTransaction();
-            session.save(p);
+            session.save(cat);
             session.getTransaction().commit();
             System.out.println("Registro insertado");
             session.close();

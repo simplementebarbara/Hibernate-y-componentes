@@ -16,6 +16,7 @@
         <!--Aqui van todas las clases-->
         <mapping class="p2t2hibernate_ferreteria.Clientes" />
          <mapping class="p2t2hibernate_ferreteria.Proveedores" />
+         <mapping class="p2t2hibernate_ferreteria.Categorias" />
     </session-factory>
 </hibernate-configuration>
 
