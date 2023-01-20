@@ -2,9 +2,13 @@
 package p2t2hibernate_ferreteria;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -35,7 +39,25 @@ public class Clientes implements Serializable {
     private String Direccion;
     @Column(name = "Telefono")
     private String Telefono;
+    @OneToMany(mappedBy = "clientes_facturas", cascade = CascadeType.ALL)
+       
+        private List<Facturas> facturas;
 
+    public List<Facturas> getFacturas() {
+        return facturas;
+    }
+
+    public void setFacturas(Facturas fact) {
+        if(facturas == null) facturas = new ArrayList<>();
+        facturas.add(fact);
+        fact.setClientes_facturas(this);
+            
+        }
+       
+    
+   
+    
+    
     //Siempre se le añade un constructor vacio
     public Clientes() {
 
@@ -46,18 +68,18 @@ public class Clientes implements Serializable {
      * @param idClientes
      * @param Nombre
      */
-    public Clientes(Integer idClientes, String Nombre,
-            String Direccion, String Telefono) {
+
+    public Clientes(Integer idClientes, String Nombre, String Direccion, String Telefono) {
         this.idClientes = idClientes;
         this.Nombre = Nombre;
         this.Direccion = Direccion;
         this.Telefono = Telefono;
-    
+        
     }
-     /**
+
+    /**
      * Creamos los metodos getter y setter de cada atributo de la clase
      */
-
     public Integer getIdClientes() {
         return idClientes;
     }
@@ -110,7 +132,8 @@ public class Clientes implements Serializable {
     }
       @Override
     public String toString() {
-        return "p2t2hibernate_ferreteria.Clientes[ id=" + idClientes + " ]";
+        return "p2t2hibernate_ferreteria.Clientes[ id=" + idClientes + ", nombre: "+
+                Nombre + " , direccion: " + Direccion + ", telefono: " + Telefono+ "]";
     }
     
 }

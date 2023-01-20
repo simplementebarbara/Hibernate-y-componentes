@@ -17,6 +17,10 @@
         <mapping class="p2t2hibernate_ferreteria.Clientes" />
          <mapping class="p2t2hibernate_ferreteria.Proveedores" />
          <mapping class="p2t2hibernate_ferreteria.Categorias" />
+         <mapping class="p2t2hibernate_ferreteria.Productos"/>
+         <mapping class="p2t2hibernate_ferreteria.Facturas"/>
+         <mapping class="p2t2hibernate_ferreteria.Lineas_facturas"/>
+        
     </session-factory>
 </hibernate-configuration>
 

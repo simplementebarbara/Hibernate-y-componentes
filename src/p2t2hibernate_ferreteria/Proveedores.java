@@ -1,9 +1,13 @@
 
 package p2t2hibernate_ferreteria;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -14,16 +18,6 @@ import javax.persistence.Table;
 @Table(name= "proveedores")
 public class Proveedores implements Serializable{
     private static final long serialVersionUID = 1L;
-
-    /**
-     * Estas lineas de codigo solo se pone si el id de la tabla fuera
-     * autogenerado
-     *
-     * @Id
-     * @GeneratedValue(strategy = GenerationType.IDENTITY)
-     * @Basic(optional = false)
-     *
-     */
     @Id
     @Column(name = "idProveedores")
     private Integer idProveedores;
@@ -33,11 +27,26 @@ public class Proveedores implements Serializable{
     private String Direccion;
     @Column(name = "Telefono")
     private String Telefono;
+     @OneToMany(mappedBy = "proveedores_productos", cascade = CascadeType.ALL)
+       
+        private List<Productos> productos;
+   
+      public List<Productos> getProductos() {
+        return productos;
+    }
 
+    public void setProductos(Productos prod) {
+        if(productos == null) productos = new ArrayList<>();
+        productos.add(prod);
+        prod.setProveedores_productos(this);
+    }
+     
     //Siempre se le añade un constructor vacio
     public Proveedores() {
 
     }
+
+   
      /**
      * Constructor sobre cargado En este caso le debemos pasar el id
      * @param idProveedores
@@ -49,7 +58,7 @@ public class Proveedores implements Serializable{
         this.Nombre = Nombre;
         this.Direccion = Direccion;
         this.Telefono = Telefono;
-    
+        
     }
  /**
      * Creamos los metodos getter y setter de cada atributo de la clase
@@ -107,6 +116,10 @@ public class Proveedores implements Serializable{
     }
       @Override
     public String toString() {
-        return "p2t2hibernate_ferreteria.Proveedores[ id=" + idProveedores + " ]";
+        return "p2t2hibernate_ferreteria.Proveedores[ id=" + idProveedores 
+                + ", Nombre: "+Nombre + " , direccion: " + Direccion + " , telefono: "+ Telefono +"]";
     }
+    
+ 
+    
 }

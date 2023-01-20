@@ -1,9 +1,13 @@
 package p2t2hibernate_ferreteria;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -15,15 +19,6 @@ import javax.persistence.Table;
 public class Categorias implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    /**
-     * Estas lineas de codigo solo se pone si el id de la tabla fuera
-     * autogenerado
-     *
-     * @Id
-     * @GeneratedValue(strategy = GenerationType.IDENTITY)
-     * @Basic(optional = false)
-     *
-     */
     @Id
     @Column(name = "idCategorias")
     private Integer idCategorias;
@@ -31,7 +26,21 @@ public class Categorias implements Serializable {
     private String Nombre;
     @Column(name = "Descripcion")
     private String Descripcion;
+   
+     @OneToMany(mappedBy = "categorias_productos", cascade = CascadeType.DETACH)
+       
+        private List<Productos> productos;
+   
+ //get y set de la relacion
+    public List<Productos> getProductos() {
+        return productos;
+    }
 
+    public void setProductos(Productos prod) {
+        if(productos == null) productos = new ArrayList<>();
+        productos.add(prod);
+        prod.setCategorias_productos(this);
+    }
     public Categorias() {
     }
 
@@ -75,7 +84,7 @@ public class Categorias implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Proveedores)) {
+        if (!(object instanceof Categorias)) {
             return false;
         }
         Categorias other = (Categorias) object;
@@ -87,6 +96,7 @@ public class Categorias implements Serializable {
 
     @Override
     public String toString() {
-        return "p2t2hibernate_ferreteria.Proveedores[ id=" + idCategorias + " ]";
+        return "p2t2hibernate_ferreteria.Proveedores[ id=" 
+                + idCategorias + ", nombre: "+Nombre+ ", descripcion: "+ Descripcion+"]";
     }
 }
