@@ -1,5 +1,10 @@
-package p2t2hibernate_ferreteria;
+package Manager;
 
+import Modelo.Productos;
+import Modelo.Clientes;
+import Modelo.Categorias;
+import Modelo.Facturas;
+import Modelo.Proveedores;
 import java.util.Date;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -19,7 +24,7 @@ public class P2T2Hibernate_ferreteria {
                     .addAnnotatedClass(Proveedores.class)
                     .addAnnotatedClass(Productos.class)
                     .addAnnotatedClass(Categorias.class)
-                    .addAnnotatedClass(Categorias.class)
+                    .addAnnotatedClass(Facturas.class)
                     .addAnnotatedClass(Clientes.class)
                     .buildSessionFactory();
             Session session = instancia.openSession();

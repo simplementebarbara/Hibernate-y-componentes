@@ -1,5 +1,4 @@
-
-package p2t2hibernate_ferreteria;
+package OldDataSource;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,12 +11,20 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
+ * Clase la cual se usa para mapear una entidad en la BDD.
  *
- * @author Daniel Mayorga y Bárbara Sánchez
+ * @Entity Se especifica que la clase es una entidad mapeada en una tabla de la
+ * BDD.
+ * @Table Nombre de la tabla
+ * @Id Identificador
+ * @Column Columna de la BDD.
+ * @OneToMany Anotacion para especificar la relacion desde categorias es de uno
+ * a muchos.
+ * @author Barbara Sanchez Rueda y Daniel Mayorga Alvarez
  */
 @Entity
 @Table(name = "clientes")
-public class Clientes implements Serializable {
+public class oldClientes implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -40,46 +47,42 @@ public class Clientes implements Serializable {
     @Column(name = "Telefono")
     private String Telefono;
     @OneToMany(mappedBy = "clientes_facturas", cascade = CascadeType.ALL)
-       
-        private List<Facturas> facturas;
 
-    public List<Facturas> getFacturas() {
-        return facturas;
-    }
-
-    public void setFacturas(Facturas fact) {
-        if(facturas == null) facturas = new ArrayList<>();
-        facturas.add(fact);
-        fact.setClientes_facturas(this);
-            
-        }
-       
-    
-   
-    
-    
-    //Siempre se le añade un constructor vacio
-    public Clientes() {
-
-    }
+    private List<oldFacturas> facturas;
 
     /**
-     * Constructor sobre cargado En este caso le debemos pasar el id
-     * @param idClientes
-     * @param Nombre
+     * Constructor vacio.
      */
+    public oldClientes() {
 
-    public Clientes(Integer idClientes, String Nombre, String Direccion, String Telefono) {
+    }
+
+    //Constructor que recibe parametros en funcion de las columnas que posee la
+    //tabla Cliente.
+    public oldClientes(Integer idClientes, String Nombre, String Direccion, String Telefono) {
         this.idClientes = idClientes;
         this.Nombre = Nombre;
         this.Direccion = Direccion;
         this.Telefono = Telefono;
-        
+
     }
 
     /**
-     * Creamos los metodos getter y setter de cada atributo de la clase
+     * Metodos getter y setter.
      */
+    public List<oldFacturas> getFacturas() {
+        return facturas;
+    }
+
+    public void setFacturas(oldFacturas fact) {
+        if (facturas == null) {
+            facturas = new ArrayList<>();
+        }
+        facturas.add(fact);
+        fact.setClientes_facturas(this);
+
+    }
+
     public Integer getIdClientes() {
         return idClientes;
     }
@@ -111,29 +114,46 @@ public class Clientes implements Serializable {
     public void setTelefono(String Telefono) {
         this.Telefono = Telefono;
     }
-      @Override
+
+    /**
+     * Metodo el cual genera un codigo hash unico para un objeto.
+     *
+     * @return Devuelve el codigo hash.
+     */
+    @Override
     public int hashCode() {
         int hash = 0;
         hash += (idClientes != null ? idClientes.hashCode() : 0);
         return hash;
     }
 
+    /**
+     * Metodo el cual comprueba si dos objetos son iguales.
+     *
+     * @param object
+     * @return Devuelve falso si no son iguales y verdaderos si son iguales.
+     */
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Clientes)) {
+        if (!(object instanceof oldClientes)) {
             return false;
         }
-        Clientes other = (Clientes) object;
+        oldClientes other = (oldClientes) object;
         if ((this.idClientes == null && other.idClientes != null) || (this.idClientes != null && !this.idClientes.equals(other.idClientes))) {
             return false;
         }
         return true;
     }
-      @Override
+
+    /**
+     * Metodo el cual muestra los atributos de clase como texto.
+     *
+     * @return Devuelve los atributos de clase como texto.
+     */
+    @Override
     public String toString() {
-        return "p2t2hibernate_ferreteria.Clientes[ id=" + idClientes + ", nombre: "+
-                Nombre + " , direccion: " + Direccion + ", telefono: " + Telefono+ "]";
+        return "p2t2hibernate_ferreteria.Clientes[ id=" + idClientes + ", nombre: "
+                + Nombre + " , direccion: " + Direccion + ", telefono: " + Telefono + "]";
     }
-    
+
 }
