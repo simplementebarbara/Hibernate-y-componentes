@@ -47,11 +47,14 @@ public class Productos implements Serializable {
     @Basic(optional = false)
     @Column(name = "Precio")
     private int precio;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productos")
     private Collection<LineasFacturas> lineasFacturasCollection;
+    
     @JoinColumn(name = "Categorias_idCategorias", referencedColumnName = "idCategorias")
     @ManyToOne(optional = false)
     private Categorias categoriasidCategorias;
+    
     @JoinColumn(name = "Proveedores_idProveedores", referencedColumnName = "idProveedores")
     @ManyToOne(optional = false)
     private Proveedores proveedoresidProveedores;

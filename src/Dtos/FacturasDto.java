@@ -1,6 +1,5 @@
 package Dtos;
 
-import Modelo.Clientes;
 import java.util.Date;
 
 /**
@@ -46,7 +45,7 @@ public class FacturasDto {
         this.fecha = fecha;
     }
 
-    public FacturasDto(Integer idFacturas, Integer descuento, Date fecha, Clientes clientes_facturas) {
+    public FacturasDto(Integer idFacturas, Integer descuento, Date fecha, Integer idClientes) {
         this.idFacturas = idFacturas;
         this.descuento = descuento;
         this.fecha = fecha;

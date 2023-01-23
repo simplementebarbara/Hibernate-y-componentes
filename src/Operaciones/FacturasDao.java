@@ -31,7 +31,7 @@ public class FacturasDao extends BaseDao<FacturasDto> {
     public FacturasDto get(Integer id) {
         Facturas facturas = getFacturas(id);
         return new FacturasDto(facturas.getIdFacturas(), facturas.getDescuento(),
-                facturas.getFecha(), facturas.getClientesidClientes());
+                facturas.getFecha(), facturas.getClientesidClientes().getIdClientes());
     }
 
     /**

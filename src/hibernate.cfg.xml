@@ -8,19 +8,15 @@
         <property name="connection.password">mysql2022</property>
         <property name="dialect">org.hibernate.dialect.MySQL8Dialect</property>
         <property name="hibernate.show_sql">false</property>
-        
-        <!-- mapping resource="accesodatos/pruebaHibernate/customer.hbm.xml"/-->
-        <!-- mapping class="accesodatos.pruebahibernate.Customer"/-->
         <property name="format_sql">true</property>
         <property name="hbm2ddl.auto">update</property>
         <!--Aqui van todas las clases-->
-        <mapping class="DataSource.Clientes" />
-         <mapping class="DataSource.Proveedores" />
-         <mapping class="DataSource.Categorias" />
-         <mapping class="DataSource.Productos"/>
-         <mapping class="DataSource.Facturas"/>
-         <mapping class="DataSource.LineasFacturas"/>
-        
+        <mapping class="Modelo.Clientes" />
+         <mapping class="Modelo.Proveedores" />
+         <mapping class="Modelo.Categorias" />
+         <mapping class="Modelo.Productos"/>
+         <mapping class="Modelo.Facturas"/>
+         <mapping class="Modelo.LineasFacturas"/>
     </session-factory>
 </hibernate-configuration>
 
